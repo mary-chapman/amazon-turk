@@ -13,6 +13,9 @@ image and then submits the results by typing in his name and clicking submit.
 Upon doing so, the server saves a .txt file in /output containing the results.  
 The txt file is named after the user (currently inputting his/her name in a box before submitting) and task number.
 
+CURRENT APPROACH: Each image corresponds to two html5 canvases (see canvas.js and task_top.html) 
+The bottom convas displays the image, the top canvas indicates marked points.  
+
 
 GETTING STARTED:
 
@@ -71,7 +74,7 @@ These print statements are off by default.
 TO DO (LISTED IN ORDER OF PRIORITY.  1 IS HIGHEST PRIORITY):
 
 1***. Make compatible with Amazon Mechanical Turk. 
-[readup on Mturk](https://www.mturk.com/mturk/welcome)|||| MOST IMPORTANT TASK PLS DO FIRST
+[readup on Mturk](https://www.mturk.com/mturk/welcome). MOST IMPORTANT TASK PLS DO FIRST
 	
 	a) 
 	This implementation only works locally right now. 
@@ -96,11 +99,8 @@ TO DO (LISTED IN ORDER OF PRIORITY.  1 IS HIGHEST PRIORITY):
 	what it will look like once you have things going.  Sandbox is free testing platform, 
 	please don't actually deploy the job.
 
+
 2. Additional Functionality 
-
-	CURRENT APPROACH: Each image corresponds to two html5 canvases (see canvas.js and task_top.html) 
-	The bottom convas displays the image, the top canvas indicates marked points.  
-
 
 	a) 
 	Right now, the user clicks on 1 point and it is marked on the image, if he clicks another point the 
