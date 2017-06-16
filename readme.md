@@ -5,7 +5,7 @@ of example the current website asks the user to "Please click the middle of the 
 
 
 CURRENT FUNCTIONALITY:
-
+======
 
 The default page has a list of tasks.  The user clicks on a task link,
 which brings him to the main task page.  There, he clicks on each
@@ -18,7 +18,7 @@ The bottom convas displays the image, the top canvas indicates marked points.
 
 
 GETTING STARTED:
-
+======
 
 1. Make sure node and npm is installed.  [Install Node Here](https://nodejs.org/en/)
 2. Make sure the following packages work (they are currently included in the repo so should be fine,here is a list anyway):
@@ -46,14 +46,15 @@ GETTING STARTED:
 6. Follow the instructions on the page.  You can go to /output to see the results.
 
 DIRECTORY STRUCTURE:
+======
 
 /imglists - contains .txt files with image filenames inside corresponding to images in /public/images
 /output - output directory .txt files
 /public - client side web pages
 server.js - the server file.  
 
-Navigating the code:
-
+NAVIGATING THE CODE:
+======
 
 Start with server.js and canvas.js.  These are the two main components.  You will notice
 that at the top of these 2 files are some debugging functions:
@@ -69,13 +70,13 @@ you can also make these print statements as alert nofifications in the browser b
 
 These print statements are off by default.
 
-======================
+
  
 TO DO (LISTED IN ORDER OF PRIORITY.  1 IS HIGHEST PRIORITY):
-
+======
 1***. Make compatible with Amazon Mechanical Turk. 
 [readup on Mturk](https://www.mturk.com/mturk/welcome). MOST IMPORTANT TASK PLS DO FIRST
-	
+-----
 	a) 
 	This implementation only works locally right now. 
 	We need it to work with the Turk interface.  
@@ -101,7 +102,7 @@ TO DO (LISTED IN ORDER OF PRIORITY.  1 IS HIGHEST PRIORITY):
 
 
 2. Additional Functionality 
-
+-----
 	a) 
 	Right now, the user clicks on 1 point and it is marked on the image, if he clicks another point the 
 	first point dissapears and the second appears.  
@@ -124,7 +125,7 @@ TO DO (LISTED IN ORDER OF PRIORITY.  1 IS HIGHEST PRIORITY):
 	and a button which takes the user back to edit some more.  
 
 3. Small Stuff
-	
+-----
 	a)
 	Make it somewhat prettier
 
