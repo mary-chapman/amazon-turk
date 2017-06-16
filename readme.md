@@ -70,59 +70,71 @@ you can also make these print statements as alert nofifications in the browser b
 
 These print statements are off by default.
 
-//================================================================================================================
-//================================================================================================================
-//================================================================================================================
-//================================================================================================================
+//==================================================================================
+//==================================================================================
+//==================================================================================
+//==================================================================================
 TO DO (LISTED IN ORDER OF PRIORITY.  1 IS HIGHEST PRIORITY):
-//================================================================================================================
-//================================================================================================================
-//================================================================================================================
-//================================================================================================================
+//==================================================================================
+//==================================================================================
+//==================================================================================
+//==================================================================================
 
 
-//================================================================================================================
-1***. Make compatible with Amazon Mechanical Turk. [a link](https://www.mturk.com/mturk/welcome)|||| MOST IMPORTANT TASK PLS DO FIRST
-//================================================================================================================
+//==================================================================================
+1***. Make compatible with Amazon Mechanical Turk. 
+[a link](https://www.mturk.com/mturk/welcome)|||| MOST IMPORTANT TASK PLS DO FIRST
+//==================================================================================
 	a) 
-	This implementation only works locally right now.  We need it to work with the Turk interface.  
-	Turk has a node.js API, but you can also use the PHP API if you like.  It is essential to familiarize
-	yourself with the amazon api.  I recommend using node.js since that is what is being used so far. 
+	This implementation only works locally right now.  
+	We need it to work with the Turk interface.  
+	Turk has a node.js API, but you can also use the PHP API if you like.  
+	It is essential to familiarize yourself with the amazon api.  
+	I recommend using node.js since that is what is being used so far. 
 
 	b) 
 	In short, workers go to Turk and choose tasks, which redirects to our server.   Right now, the 
 	start page has a link to each task which the client clicks on.  
-	WHAT WE WANT: eventually the task should be redirected directly from which task the worker picks on the Amazon interface.  
+	WHAT WE WANT: eventually the task should be redirected directly 
+	from which task the worker picks on the Amazon interface.  
 
 	c) 
 	Currently, I have some input box where someone types their user_id
-	WHAT WE WANT: eventually the worker_id is got from Amazon's API when the worker starts the job.  We need the worker_id to pay the worker.  
+	WHAT WE WANT: eventually the worker_id is got from Amazon's API when the worker starts the job. 
+	We need the worker_id to pay the worker.  
 
 	d) 
-	Make an AWS account and deploy the job into the "sandbox" to test what it will look like once you have things going.  
-	Sandbox is free testing platform, please don't actually deploy the job.
+	Make an AWS account and deploy the job into the "sandbox" to test 
+	what it will look like once you have things going.  Sandbox is free testing platform, 
+	please don't actually deploy the job.
 
 //================================================================================================================
 2. Additional Functionality 
 //================================================================================================================
-	CURRENT APPROACH: Each image corresponds to two html5 canvases (see canvas.js and task_top.html) The bottom convas displays the image, the top canvas indicates marked points.  
+	CURRENT APPROACH: Each image corresponds to two html5 canvases (see canvas.js and task_top.html) 
+	The bottom convas displays the image, the top canvas indicates marked points.  
 
 
 	a) 
-	Right now, the user clicks on 1 point and it is marked on the image, if he clicks another point the first point dissapears and the second appears.  
+	Right now, the user clicks on 1 point and it is marked on the image, if he clicks another point the 
+	first point dissapears and the second appears.  
 	WHAT WE WANT: He can click on a max of K points, K is a variable to be defined on the page. 
-	If he right clicks on a point, that point dissapears.  There should be a button to erase all the points under
-	each image.  There should also be a checkbox to indicate "No relevant regions visible" for that image.  Make sure all clicked/checked data for each image
+	If he right clicks on a point, that point dissapears.  
+	There should be a button to erase all the points under each image.  
+	There should also be a checkbox to indicate "No relevant regions visible" for that image.  
+	Make sure all clicked/checked data for each image
 	is saved in some format to a txt file in /output directory.  
 
 	b) 
 	Right now, there are two fixed images on the page.  
-	WHAT WE WANT: The number of images is generated dynamically from the number of image files listed in each task text file.  
+	WHAT WE WANT: The number of images is generated dynamically from 
+	the number of image files listed in each task text file.  
 
 	c)
 	Right now, no final review page.
-	WHAT WE WANT: when user clicks submit, a page is generated showing all images and relevant clicks/data the user input.    
-	There should be a final confirm button, and a button which takes the user back to edit some more.  
+	WHAT WE WANT: when user clicks submit, a page is generated showing all 
+	images and relevant clicks/data the user input.    There should be a final confirm button, 
+	and a button which takes the user back to edit some more.  
 
 //================================================================================================================
 3. Small Stuff
