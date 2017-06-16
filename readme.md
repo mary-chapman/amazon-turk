@@ -17,7 +17,7 @@ The txt file is named after the user (currently inputting his/her name in a box 
 GETTING STARTED:
 //========================================================
 
-1. Make sure node and npm is installed.  [a link](https://nodejs.org/en/)
+1. Make sure node and npm is installed.  [Install Node Here](https://nodejs.org/en/)
 2. Make sure the following packages work (they are currently included in the repo so should be fine,here is a list anyway):
 
 	npm install	http
@@ -69,24 +69,26 @@ you can also make these print statements as alert nofifications in the browser b
 
 These print statements are off by default.
 
-//========================================================= 
-//========================================================= 
-//========================================================= 
-//========================================================= 
+========================================================= 
+========================================================= 
+========================================================= 
+========================================================= 
 TO DO (LISTED IN ORDER OF PRIORITY.  1 IS HIGHEST PRIORITY):
-//========================================================= 
-//========================================================= 
-//========================================================= 
-//========================================================= 
+========================================================= 
+========================================================= 
+========================================================= 
+========================================================= 
 
 
 //=========================================================
+
 1***. Make compatible with Amazon Mechanical Turk. 
-[a link](https://www.mturk.com/mturk/welcome)|||| MOST IMPORTANT TASK PLS DO FIRST
+[readup on Mturk](https://www.mturk.com/mturk/welcome)|||| MOST IMPORTANT TASK PLS DO FIRST
+
 //=========================================================
 	
 	a) 
-	This implementation only works locally right now.  
+	This implementation only works locally right now. 
 	We need it to work with the Turk interface.  
 	Turk has a node.js API, but you can also use the PHP API if you like.  
 	It is essential to familiarize yourself with the amazon api.  
@@ -109,7 +111,9 @@ TO DO (LISTED IN ORDER OF PRIORITY.  1 IS HIGHEST PRIORITY):
 	please don't actually deploy the job.
 
 //================================================================================================================
+
 2. Additional Functionality 
+
 //================================================================================================================
 	CURRENT APPROACH: Each image corresponds to two html5 canvases (see canvas.js and task_top.html) 
 	The bottom convas displays the image, the top canvas indicates marked points.  
@@ -137,7 +141,9 @@ TO DO (LISTED IN ORDER OF PRIORITY.  1 IS HIGHEST PRIORITY):
 	and a button which takes the user back to edit some more.  
 
 //================================================================================================================
+
 3. Small Stuff
+
 //================================================================================================================
 	
 	a)
