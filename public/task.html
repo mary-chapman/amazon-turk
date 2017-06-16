@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Canvas Resize</title>
+	<style type="text/css">
+		canvas {
+			border: 1px solid black;
+		}
+
+		body {
+			margin: 0;
+		}
+/*
+		Each container contains 2 canvases, one on top of the other.  one canvas is used to 
+		display an image, the other canvas is used to draw indications*/
+		#container1{ position: relative; }
+    	#canvas1 { position: relative; top: 0; left: 0; }
+    	#canvas2 { position: absolute; top: 0; left: 0; }
+    	
+    	#container2{ position: relative; }
+		#canvas3 { position: relative; top: 0; left: 0; }
+    	#canvas4 { position: absolute; top: 0; left: 0; }
+/*
+    	----------------------------
+*/
+	</style>
+</head>
+<body>
+
+<!-- 	Here are the containers and the canvases underneath -->
+	<div>
+	<div id="container1">
+    <canvas class="canvas" id="canvas1"></canvas>
+    <canvas class="canvas" id="canvas2"></canvas>
+	</div>
+
+	<div id="container2">
+    <canvas class="canvas" id="canvas3"></canvas>
+    <canvas class="canvas" id="canvas4"></canvas>
+    </div>
+    </div>
+
+<!--############################################ -->
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js">  </script>
+	<script src="canvas.js"></script> <!-- The main script to click the keypoints -->
+
+	<input type="button" value="Submit Results" id="submit" onClick="submit_results()">
+</body>
+</html>
