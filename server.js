@@ -1,6 +1,19 @@
+//========================================================
+// Install relevant packages if neccessary
+//========================================================
+	// npm install http
+	// npm install fs
+	// npm install var bodbody-parser
+	// npm install url
+	// npm install varexpress
+	// npm install var app = express
+	// npm install path
+	// npm install request
+	// npm install child process
+//========================================================
 var http = require("http");
 var fs = require('fs');
-var bodyParser     =  require("body-parser");
+var bodyParser =  require("body-parser");
 var url = require('url');
 var express = require('express');
 var app = express();
@@ -8,7 +21,7 @@ var path = require('path');
 var request = require('request');
 const exec = require('child_process').exec;
 //========================================================
-app.use(express.static(__dirname + '/public')); // takes us to index.html
+app.use(express.static(__dirname + '/public')); // takes us to index.html inside public
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 //========================================================
@@ -22,7 +35,23 @@ app.use(bodyParser.json());
 // the link starts the task for the corresponding set of images in that .txt file
 //========================================================
 //========================================================
+function display_request_name(request_name, silent)
+// logs serverside 'request_name' on console silent==false.  Debugging tool.
+{
+  if (silent == false) {
+    console.log('Inside request '+request_name);
+  }
+
+}
+//========================================================
+var silent = true; // if this is false, then the server will log each request on the console as that request is made.
+//========================================================
+
+
 app.get('/begin',function(req, res) {
+
+	myurl = (req.originalUrl);
+	display_request_name(myurl, silent);
 	var files = fs.readdirSync(__dirname +"/imglists/");
 	var links = new Array();
  
@@ -50,6 +79,9 @@ app.get('/begin',function(req, res) {
 // with the task index to the actual task page.
 //========================================================
 app.get('/imglists/:num',function(req, res) {
+
+	myurl = (req.originalUrl);
+	display_request_name(myurl, silent);
 
 	var files = fs.readdirSync(__dirname +"/imglists/");
 	var task_num = Number(req.params.num); //task num got from url
@@ -85,6 +117,10 @@ app.get('/imglists/:num',function(req, res) {
 // the correct images to be loaded for the task
 //========================================================
 app.get('/task',function(req, res) {
+
+	myurl = (req.originalUrl);
+	display_request_name(myurl, silent);
+
 	var imgs = req.query.imgs;
 	var task_num = req.query.task_num;
 
@@ -100,16 +136,18 @@ app.get('/task',function(req, res) {
 // this post is activated when user clicks submit button
 // it takes the keypoints recorded in the website and 
 // writes them into a .txt file.  The .txt file name
-// contains the username and task number
+// contains the username and task number.  See canvas.js to see
+// how the submission is posted.
 //========================================================
 app.post('/submit',function(req,res){
-  
+  myurl = (req.originalUrl);
+  display_request_name(myurl, silent);
   
   var coords = req.body.coords;
   var user = req.body.user;
   var task_num = req.body.task_num;
   out_str = coords; // final user submitted coordinates 
-  export_command = '(echo '+out_str+') > output/'+user+'_'+task_num+'.txt'; // writes the coordinates into a txt file, the file name is the username and txt number
+  export_command = '(echo '+out_str+') > output/'+user+'_'+'task_'+task_num+'.txt'; // writes the coordinates into a txt file, the file name is the username and txt number
 
   exec(export_command, function(err, stdout, stderr){ // exec library lets the server execute the command.  It is saved in the /output directory
 	  if (err) {
@@ -122,3 +160,4 @@ app.post('/submit',function(req,res){
 //========================================================
 app.listen(8080);
 console.log('Server running at http://127.0.0.1:8080/');
+//========================================================

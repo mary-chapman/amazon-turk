@@ -1,3 +1,19 @@
+
+function display_func_name(func_name, silent, log)
+// either logs 'func_name' on console or alerts it if silent==false.  Debugging tool.
+{
+  if (silent == false) {
+    if (log == true) {
+    console.log('Inside function '+func_name);}
+    else {alert('Inside function '+func_name);}
+  }
+
+}
+//========================================================
+var silent = true; // if this is false, console will log each function name as it is called.
+var log = true;  // if this is true, will use console log.  If false, will make alert notification in browser.
+//========================================================
+
 //========================================================
 // We get all the canvases here and set their size
 //========================================================
@@ -5,8 +21,10 @@ var canvas1 = document.getElementById('canvas1');
 var canvas2 = document.getElementById('canvas2');
 var canvas3 = document.getElementById('canvas3');
 var canvas4 = document.getElementById('canvas4');
-set_canvas_size(canvas1,canvas2, 300,300);
-set_canvas_size(canvas3,canvas4, 300,300);
+
+var size = 300;
+set_canvas_size(canvas1,canvas2, size,size);
+set_canvas_size(canvas3,canvas4, size,size);
 //========================================================
 //the canvas contexts
 //========================================================
@@ -26,6 +44,9 @@ make_bases(imgs, canvases, 0, make_bases); // draws img[i] on canvases[i]
 // This function takes two stacked convases and sets their size to be the same
 //========================================================
 function set_canvas_size(canvas_name_bot, canvas_name_top, w,h) {
+  var myName = arguments.callee.name;
+  display_func_name(myName, silent, log);
+
   canvas_name_top.width=w;
   canvas_name_top.height=h;
   canvas_name_bot.width=w;
@@ -35,6 +56,9 @@ function set_canvas_size(canvas_name_bot, canvas_name_top, w,h) {
 function make_bases(imgsrc, canvas, i, callback)
 // draws imgs[i] on canvases[i] using callback 
 {
+  var myName = arguments.callee.name;
+  display_func_name(myName, silent, log);
+
   c = canvas[i].getContext('2d');
   base_image = new Image();
   base_image.src = imgsrc[i];
@@ -49,6 +73,9 @@ function make_bases(imgsrc, canvas, i, callback)
 }
 //========================================================
 function getMousePos(canvas, evt) {
+
+  var myName = arguments.callee.name;
+  display_func_name(myName, silent, log);
 	// gets the mouse position 
     var rect = canvas.getBoundingClientRect();
     return {
@@ -56,9 +83,11 @@ function getMousePos(canvas, evt) {
       y: evt.clientY - rect.top
     };
 }
-
+//========================================================
 function canvas_draw(e) {
-	// Draws a block on the canvas
+  var myName = arguments.callee.name;
+  display_func_name(myName, silent, log);
+	// Draws a black rectangle on the canvas
 
 	c = this.getContext('2d')
 	c.clearRect(0, 0, this.width, this.height); // clear previous marks on this window; each image should only have one keypoint drawn
@@ -66,37 +95,59 @@ function canvas_draw(e) {
     posx = pos.x;
     posy = pos.y;
     this.coords = [posx, posy]
-    console.log(canvas2.coords)
     c.fillRect(posx-10, posy-10, 20, 20);
 }
-
+//========================================================
+// activated when submit button is clicked
+//========================================================
 function submit_results() {
-	console.log('submitted!');
-}
 
+  var myName = arguments.callee.name;
+  display_func_name(myName, silent, log);
+	console.log('Submit button clicked!');
+}
+//========================================================
+// This is the function that makes the submisison happen.
+// If a keypoint is not clicked on,the page alerts
+// the user to mark all images before resubmitting
+// Also activated whe submit button clicked
+//========================================================
 $(document).ready(function(){
-    $("#submit").click(function(){
+
+    var myName = arguments.callee.name;
+    display_func_name(myName, silent, log);
+    $("#submit").click(function(){ //submit function is based on click
+      var empty_field= false;
+      var which_fields_empty = new Array();
       var submit_dict = new Array();
       var user=$("#user").val();
       for (i=0; i <imgs.length; i++) {
-      	submit_dict[i]=(canvas_tops[i].coords);
+      	submit_dict[i]=(canvas_tops[i].coords); //submit_dict has the corresponding points clicked on each image
+        if (canvas_tops[i].coords == null) {
+          empty_field = true;
+          which_fields_empty.push(i);
+        }
       }
-      var coords = JSON.stringify(submit_dict);
-      console.log('coords', coords);
-      //console.log('user', user);
+      var coords = JSON.stringify(submit_dict); // change submit_dict to a string
+      if (!empty_field) { // only post the result if user clicked on all images
       $.ajax({
-    	url: 'http://localhost:8080/submit',
+    	url: 'http://localhost:8080/submit', // post data to /submit.  See server.js to see the server response.
     	type: 'POST',
-    	//data: {submit_dict, user:user},
       data: {coords: coords, user:user, task_num: task_num},
     	success: function (data) {
         	alert(data);
     	}
-	});
-
+	   });
+    }
+    else { // alert user if he did not click on all images
+      var empty_images = JSON.stringify(which_fields_empty);
+      alert('Images '+empty_images+' were not clicked on.  Please choose keypoints for these images and resubmit');
+    }
     });
   });
 // we add an event to detect clicks on the "top" canvas.
 // The bottom canvas contains the image and is not being drawn on
+//========================================================
 canvas2.addEventListener('click', canvas_draw, false);
 canvas4.addEventListener('click', canvas_draw, false);
+//========================================================
