@@ -22,13 +22,12 @@ GETTING STARTED:
 
 	npm install	http
 	npm install	fs
-	npm install	var bodbody-parser
+	npm install body-parser
 	npm install	url
-	npm install	varexpress
-	npm install	var app = express
+	npm install	express
 	npm install	path
 	npm install	request
-	npm install	child process
+	npm install	child_process
 
 
 3. Go to root directory and execute:
@@ -70,21 +69,22 @@ you can also make these print statements as alert nofifications in the browser b
 
 These print statements are off by default.
 
-//==================================================================================
-//==================================================================================
-//==================================================================================
-//==================================================================================
+//========================================================= 
+//========================================================= 
+//========================================================= 
+//========================================================= 
 TO DO (LISTED IN ORDER OF PRIORITY.  1 IS HIGHEST PRIORITY):
-//==================================================================================
-//==================================================================================
-//==================================================================================
-//==================================================================================
+//========================================================= 
+//========================================================= 
+//========================================================= 
+//========================================================= 
 
 
-//==================================================================================
+//=========================================================
 1***. Make compatible with Amazon Mechanical Turk. 
 [a link](https://www.mturk.com/mturk/welcome)|||| MOST IMPORTANT TASK PLS DO FIRST
-//==================================================================================
+//=========================================================
+	
 	a) 
 	This implementation only works locally right now.  
 	We need it to work with the Turk interface.  
@@ -93,8 +93,8 @@ TO DO (LISTED IN ORDER OF PRIORITY.  1 IS HIGHEST PRIORITY):
 	I recommend using node.js since that is what is being used so far. 
 
 	b) 
-	In short, workers go to Turk and choose tasks, which redirects to our server.   Right now, the 
-	start page has a link to each task which the client clicks on.  
+	In short, workers go to Turk and choose tasks, which redirects to our server.  
+	Right now, the start page has a link to each task which the client clicks on.  
 	WHAT WE WANT: eventually the task should be redirected directly 
 	from which task the worker picks on the Amazon interface.  
 
@@ -139,6 +139,7 @@ TO DO (LISTED IN ORDER OF PRIORITY.  1 IS HIGHEST PRIORITY):
 //================================================================================================================
 3. Small Stuff
 //================================================================================================================
+	
 	a)
 	Make it somewhat prettier
 

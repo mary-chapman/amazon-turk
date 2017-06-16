@@ -1,15 +1,16 @@
 //========================================================
 // Install relevant packages if neccessary
 //========================================================
-	// npm install http
-	// npm install fs
-	// npm install var bodbody-parser
-	// npm install url
-	// npm install varexpress
-	// npm install var app = express
-	// npm install path
-	// npm install request
-	// npm install child process
+	
+	// npm install	http
+	// npm install	fs
+	// npm install body-parser
+	// npm install	url
+	// npm install	express
+	// npm install	path
+	// npm install	request
+	// npm install	child_process
+
 //========================================================
 var http = require("http");
 var fs = require('fs');
