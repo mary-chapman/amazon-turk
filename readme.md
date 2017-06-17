@@ -77,7 +77,7 @@ These print statements are off by default.
  
 TO DO (LISTED IN ORDER OF PRIORITY.  1 IS HIGHEST PRIORITY):
 ------
-###1***. Make compatible with Amazon Mechanical Turk. 
+### 1***. Make compatible with Amazon Mechanical Turk. 
 [readup on Mturk](https://www.mturk.com/mturk/welcome). MOST IMPORTANT TASK PLS DO FIRST
 
 	a) 
@@ -103,7 +103,7 @@ TO DO (LISTED IN ORDER OF PRIORITY.  1 IS HIGHEST PRIORITY):
 	what it will look like once you have things going.  Sandbox is free testing platform, 
 	please don't actually deploy the job.
 
-###2. Additional Functionality 
+### 2. Additional Functionality 
 
 	a) 
 	Right now, the user clicks on 1 point and it is marked on the image, if he clicks another point the 
@@ -126,7 +126,7 @@ TO DO (LISTED IN ORDER OF PRIORITY.  1 IS HIGHEST PRIORITY):
 	images and relevant clicks/data the user input.    There should be a final confirm button, 
 	and a button which takes the user back to edit some more.  
 
-###3. Small Stuff
+### 3. Small Stuff
 
 	a)
 	Make it somewhat prettier
