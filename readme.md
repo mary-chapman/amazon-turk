@@ -24,18 +24,25 @@ GETTING STARTED:
 2. Make sure the following packages work (they are currently included in the repo so should be fine,here is a list anyway):
 
 	npm install	http
+
 	npm install	fs
+
 	npm install body-parser
+
 	npm install	url
+
 	npm install	express
+
 	npm install	path
+
 	npm install	request
+
 	npm install	child_process
 
 
 3. Go to root directory and execute:
-
-	node server.js
+	
+		node server.js
 
 4. Open web browser and go to:
 

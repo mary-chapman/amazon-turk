@@ -63,7 +63,7 @@ app.get('/begin',function(req, res) {
 	} 
 	//========================================================
 	// we serve the html page dynamically by combining a template for an html page (html_top and html_bottom)
-	// along with links, which we insert into the middle, and the serve
+	// along with links, which we insert into the middle, and then serve
 	//========================================================
 	var html_top = ' <!DOCTYPE html><html lang=\"en\"><head><meta charset=\"UTF-8\"> \
 		<title>Canvas Resize</title><style type=\"text/css\"></style></head><body> ';
