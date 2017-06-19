@@ -22,9 +22,16 @@ var canvas2 = document.getElementById('canvas2');
 var canvas3 = document.getElementById('canvas3');
 var canvas4 = document.getElementById('canvas4');
 
-var size = 300;
-set_canvas_size(canvas1,canvas2, size,size);
-set_canvas_size(canvas3,canvas4, size,size);
+canvas2.coords = new Array();
+canvas4.coords = new Array();
+
+var csize = 300;
+set_canvas_size(canvas1,canvas2, csize,csize);
+set_canvas_size(canvas3,canvas4, csize,csize);
+
+var rsize = 10;
+var total_allowed_points = 8;
+
 //========================================================
 //the canvas contexts
 //========================================================
@@ -90,13 +97,27 @@ function canvas_draw(e) {
 	// Draws a black rectangle on the canvas
 
 	c = this.getContext('2d')
-	c.clearRect(0, 0, this.width, this.height); // clear previous marks on this window; each image should only have one keypoint drawn
+	   
+  if (this.coords.length < total_allowed_points) {
     var pos = getMousePos(this, e);
     posx = pos.x;
     posy = pos.y;
-    this.coords = [posx, posy]
-    c.fillRect(posx-10, posy-10, 20, 20);
+    this.coords.push([posx, posy]);
+    c.fillRect(posx-rsize/2, posy-rsize/2, rsize, rsize);}
+
+  else {alert('Only '+total_allowed_points.toString()+' points allowed.')}
 }
+//========================================================
+//event function to reset keypoints
+//========================================================
+function clear(e) {
+  e.preventDefault();
+  c = this.getContext('2d')
+  c.clearRect(0, 0, this.width, this.height);
+  this.coords = [];
+  return false;
+}
+
 //========================================================
 // activated when submit button is clicked
 //========================================================
@@ -145,9 +166,17 @@ $(document).ready(function(){
     }
     });
   });
+//========================================================
 // we add an event to detect clicks on the "top" canvas.
 // The bottom canvas contains the image and is not being drawn on
 //========================================================
 canvas2.addEventListener('click', canvas_draw, false);
 canvas4.addEventListener('click', canvas_draw, false);
+
+
+//========================================================
+// Adding right click event to erase selected points
+//========================================================
+canvas2.addEventListener('contextmenu', clear, false); 
+canvas4.addEventListener('contextmenu', clear, false);
 //========================================================
