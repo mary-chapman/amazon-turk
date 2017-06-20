@@ -144,7 +144,8 @@ $(document).ready(function(){
       var user=$("#user").val();
       for (i=0; i <imgs.length; i++) {
       	submit_dict[i]=(canvas_tops[i].coords); //submit_dict has the corresponding points clicked on each image
-        if (canvas_tops[i].coords == null) {
+        console.log(canvas_tops[i].coords[0]);
+        if (canvas_tops[i].coords[0] == null) {
           empty_field = true;
           which_fields_empty.push(i);
         }
@@ -152,7 +153,7 @@ $(document).ready(function(){
       var coords = JSON.stringify(submit_dict); // change submit_dict to a string
       if (!empty_field) { // only post the result if user clicked on all images
       $.ajax({
-    	url: 'http://localhost:8080/submit', // post data to /submit.  See server.js to see the server response.
+    	url: '/submit', // post data to /submit.  See server.js to see the server response.
     	type: 'POST',
       data: {coords: coords, user:user, task_num: task_num},
     	success: function (data) {
