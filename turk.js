@@ -14,7 +14,7 @@ mturk.getAccountBalance(function(err, data){
     console.log(data.AvailableBalance);
 });
 
-fs.readFile('public/samp_question.html', 'utf8', function (err,my_question) {
+fs.readFile('public/external.html', 'utf8', function (err,my_question) {
     if (err) {
         return console.log(err);
     };
