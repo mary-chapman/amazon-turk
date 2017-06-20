@@ -49,27 +49,60 @@ var silent = true; // if this is false, then the server will log each request on
 //========================================================
 
 
+
+// app.get('/begin_old',function(req, res) {
+
+// 	myurl = (req.originalUrl);
+// 	display_request_name(myurl, silent);
+// 	var files = fs.readdirSync(__dirname +"/imglists/");
+// 	var links = new Array();
+ 
+// 	for (i=0; i<files.length; i++) { // add a link for each file in /imglists
+// 		links[i] = '<a href = '+ '\"imglists\\' + i.toString() + '\"' + '>' +  'task_' + i.toString() + '</a>';
+// 		// Notice that each link redirects simply to the file index as a string.  This will be relevant in the
+// 		// subsequent "app.get('/imglists/:num')"" call.
+// 	} 
+// 	//========================================================
+// 	// we serve the html page dynamically by combining a template for an html page (html_top and html_bottom)
+// 	// along with links, which we insert into the middle, and then serve
+// 	//========================================================
+// 	var html_top = ' <!DOCTYPE html><html lang=\"en\"><head><meta charset=\"UTF-8\"> \
+// 		<title>Canvas Resize</title><style type=\"text/css\"></style></head><body> ';
+// 	var links = links.toString().split(',').join('<br>'); //The links that show up are based on the .txt files
+// 	var html_bottom = ' </body></html> ';
+// 	res.send(html_top + links + html_bottom); // sending the string concatenation
+// });
+
+
+//========================================================
+// Like app.get('/being_old'), except it picks the next
+// available task instead of letting the user pick
+// Next available is simply the next task listed in order of the fs.readdirSync method
+// which has not yet been done "num_repeat_task" times yet.  Potential problems
+// due to asynchronous acess.  
+//========================================================
+
+var task_counter = {};
+var files = fs.readdirSync(__dirname +"/imglists/");
+for (i=0; i<files.length; i++) {
+	task_counter[files[i]] = 0;
+};
+var num_repeat_task = 3;
+
 app.get('/begin',function(req, res) {
 
 	myurl = (req.originalUrl);
 	display_request_name(myurl, silent);
 	var files = fs.readdirSync(__dirname +"/imglists/");
-	var links = new Array();
- 
-	for (i=0; i<files.length; i++) { // add a link for each file in /imglists
-		links[i] = '<a href = '+ '\"imglists\\' + i.toString() + '\"' + '>' +  'task_' + i.toString() + '</a>';
-		// Notice that each link redirects simply to the file index as a string.  This will be relevant in the
-		// subsequent "app.get('/imglists/:num')"" call.
-	} 
-	//========================================================
-	// we serve the html page dynamically by combining a template for an html page (html_top and html_bottom)
-	// along with links, which we insert into the middle, and then serve
-	//========================================================
-	var html_top = ' <!DOCTYPE html><html lang=\"en\"><head><meta charset=\"UTF-8\"> \
-		<title>Canvas Resize</title><style type=\"text/css\"></style></head><body> ';
-	var links = links.toString().split(',').join('<br>'); //The links that show up are based on the .txt files
-	var html_bottom = ' </body></html> ';
-	res.send(html_top + links + html_bottom); // sending the string concatenation
+
+	for (i=0; i<files.length; i++) {
+		if (task_counter[files[i]] <= num_repeat_task) {
+			task_counter[files[i]]+=1;
+			res.redirect('/imglists/'+i.toString() );
+			break;
+		}
+	}
+
 });
 //========================================================
 // The following get call gets activated after the user clicks on one of the links served up by
@@ -86,6 +119,7 @@ app.get('/imglists/:num',function(req, res) {
 
 	var files = fs.readdirSync(__dirname +"/imglists/");
 	var task_num = Number(req.params.num); //task num got from url
+	console.log(task_num);
 	var text = fs.readFileSync(__dirname + '/imglists/' + files[task_num],'utf8'); // get the .txt file that corresponds to task_num
 	var imgs = text.split('\r\n');
 
