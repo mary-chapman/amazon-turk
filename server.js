@@ -13,6 +13,7 @@
 
 //========================================================
 var http = require("http");
+var https = require('https');
 var fs = require('fs');
 var bodyParser =  require("body-parser");
 var url = require('url');
@@ -26,15 +27,16 @@ app.use(express.static(__dirname + '/public')); // takes us to index.html inside
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 //========================================================
+
 //========================================================
-// This is where everything starts.  We technically start at index.html, but
-// index.html automatically sends us to "/begin", so it activates this .get
-// the /imglists directory is a directory of .txt files each containing img file names.  Each
-// .txt file denotes a task.  
-//
-// This function reads all the .txt files and makes a link for each of them.  Clicking on
-// the link starts the task for the corresponding set of images in that .txt file
+// Https key and certificate.  Necessary to host https server.
 //========================================================
+var privateKey  = fs.readFileSync('sslcert/key.pem', 'utf8');
+var certificate = fs.readFileSync('sslcert/cert.pem', 'utf8');
+var credentials = {key: privateKey, cert: certificate};
+
+var httpsServer = https.createServer(credentials, app);
+
 //========================================================
 function display_request_name(request_name, silent)
 // logs serverside 'request_name' on console silent==false.  Debugging tool.
@@ -48,6 +50,17 @@ function display_request_name(request_name, silent)
 var silent = true; // if this is false, then the server will log each request on the console as that request is made.
 //========================================================
 
+
+
+//========================================================
+// This is where everything starts.  We technically start at index.html, but
+// index.html automatically sends us to "/begin", so it activates this .get
+// the /imglists directory is a directory of .txt files each containing img file names.  Each
+// .txt file denotes a task.  
+//
+// This function reads all the .txt files and makes a link for each of them.  Clicking on
+// the link starts the task for the corresponding set of images in that .txt file
+//========================================================
 // app.get('/begin_old',function(req, res) {
 
 // 	myurl = (req.originalUrl);
@@ -190,6 +203,7 @@ app.post('/submit',function(req,res){
 	});
 });
 //========================================================
-app.listen(3000);
+httpsServer.listen(8443);
+//app.listen(3000);
 console.log('Server running at http://127.0.0.1:8080/');
 //========================================================
