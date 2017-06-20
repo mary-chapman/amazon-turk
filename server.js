@@ -48,8 +48,6 @@ function display_request_name(request_name, silent)
 var silent = true; // if this is false, then the server will log each request on the console as that request is made.
 //========================================================
 
-
-
 // app.get('/begin_old',function(req, res) {
 
 // 	myurl = (req.originalUrl);
@@ -119,7 +117,6 @@ app.get('/imglists/:num',function(req, res) {
 
 	var files = fs.readdirSync(__dirname +"/imglists/");
 	var task_num = Number(req.params.num); //task num got from url
-	console.log(task_num);
 	var text = fs.readFileSync(__dirname + '/imglists/' + files[task_num],'utf8'); // get the .txt file that corresponds to task_num
 	var imgs = text.split('\r\n');
 

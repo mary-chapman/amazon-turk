@@ -172,11 +172,9 @@ $(document).ready(function(){
 //========================================================
 canvas2.addEventListener('click', canvas_draw, false);
 canvas4.addEventListener('click', canvas_draw, false);
-
-
 //========================================================
 // Adding right click event to erase selected points
 //========================================================
-canvas2.addEventListener('contextmenu', clear, false); 
+canvas2.addEventListener('contextmenu', clear, false);
 canvas4.addEventListener('contextmenu', clear, false);
 //========================================================
