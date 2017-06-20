@@ -193,6 +193,7 @@ app.post('/submit',function(req,res){
   var task_num = req.body.task_num;
   out_str = coords; // final user submitted coordinates 
   export_command = '(echo '+out_str+') > output/'+user+'_'+'task_'+task_num+'.txt'; // writes the coordinates into a txt file, the file name is the username and txt number
+  console.log(export_command);
 
   exec(export_command, function(err, stdout, stderr){ // exec library lets the server execute the command.  It is saved in the /output directory
 	  if (err) {
@@ -204,6 +205,6 @@ app.post('/submit',function(req,res){
 });
 //========================================================
 httpsServer.listen(8443);
-//app.listen(3000);
+app.listen(3000);
 console.log('Server running at http://127.0.0.1:8080/');
 //========================================================
