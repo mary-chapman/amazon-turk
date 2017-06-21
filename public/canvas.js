@@ -106,6 +106,8 @@ function canvas_draw(e) {
     c.fillRect(posx-rsize/2, posy-rsize/2, rsize, rsize);}
 
   else {alert('Only '+total_allowed_points.toString()+' points allowed.')}
+
+    turkSetAssignmentID(assignmentId);
 }
 //========================================================
 //event function to reset keypoints
@@ -115,6 +117,8 @@ function clear(e) {
   c = this.getContext('2d')
   c.clearRect(0, 0, this.width, this.height);
   this.coords = [];
+
+  turkSetAssignmentID(assignmentId);
   return false;
 }
 
@@ -189,15 +193,31 @@ function turkSetAssignmentID(assignmentId) {
 
   button_name = 'submit';
   document.getElementById('assignmentId').value = assignmentId;
+  btn = document.getElementById(button_name);
 
   if (assignmentId == "ASSIGNMENT_ID_NOT_AVAILABLE") { 
     // If we're previewing, disable the button and give it a helpful message
-    btn = document.getElementById(button_name);
     if (btn) {
       btn.disabled = true; 
       btn.value = "You must ACCEPT the HIT before you can submit the results.";
     } 
   }
+
+  var empty_field= false;
+  for (i=0; i <imgs.length; i++) {
+        if (canvas_tops[i].coords[0] == null) {
+          empty_field = true;
+          break;
+        }
+      }
+  if (empty_field) {
+    btn.disabled = true; 
+    btn.value = "Please choose a keypoint for each image";
+  }
+
+  else {btn.disabled = false;}
+
+
 }
 //========================================================
 // we add an event to detect clicks on the "top" canvas.
