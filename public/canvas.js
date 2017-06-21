@@ -195,6 +195,14 @@ function turkSetAssignmentID(assignmentId) {
   document.getElementById('assignmentId').value = assignmentId;
   btn = document.getElementById(button_name);
 
+  var empty_field= false;
+  for (i=0; i <imgs.length; i++) {
+        if (canvas_tops[i].coords[0] == null) {
+          empty_field = true;
+          break;
+        }
+  }
+
   if (assignmentId == "ASSIGNMENT_ID_NOT_AVAILABLE") { 
     // If we're previewing, disable the button and give it a helpful message
     if (btn) {
@@ -203,16 +211,10 @@ function turkSetAssignmentID(assignmentId) {
     } 
   }
 
-  var empty_field= false;
-  for (i=0; i <imgs.length; i++) {
-        if (canvas_tops[i].coords[0] == null) {
-          empty_field = true;
-          break;
-        }
-      }
-  if (empty_field) {
+  
+  else if (empty_field) {
     btn.disabled = true; 
-    btn.value = "Please choose a keypoint for each image";
+    btn.value = "Please choose a keypoint for each image before submitting";
   }
 
   else {btn.disabled = false;}
