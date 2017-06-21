@@ -175,7 +175,6 @@ $(document).ready(function(){
 	   // });
      var mydata = {coords: coords, comments: comments, task_num: task_num, assignmentId: assignmentId};
      ajax_post('/submit', mydata);
-     ajax_post('https://workersandbox.mturk.com/mturk/externalSubmit', mydata);
     }
     else { // alert user if he did not click on all images
       var empty_images = JSON.stringify(which_fields_empty);

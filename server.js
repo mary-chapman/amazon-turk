@@ -217,6 +217,8 @@ app.post('/submit',function(req,res){
 	  }
 	  console.log(stdout);
 	});
+  var submitURL = 'https://workersandbox.mturk.com/mturk/externalSubmit?'+'assignmentId='+assignmentId;
+  res.redirect(submitURL);
 });
 //========================================================
 httpsServer.listen(8443);
