@@ -188,6 +188,7 @@ app.get('/task',function(req, res) {
     var bottom = fs.readFileSync(__dirname +"/public/task_bottom.html", 'utf8');
 
     html = top + middle_img + middle_task + middle_assignment_id + bottom;
+    console.log(middle_assignment_id);
 	res.send(html);
 });
 //========================================================
