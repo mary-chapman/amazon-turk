@@ -128,6 +128,19 @@ function submit_results() {
 	console.log('Submit button clicked!');
 }
 //========================================================
+// Function to encapsulate the ajax post
+//========================================================
+function ajax_post(myurl, mydata) {
+  $.ajax({
+      url: myurl, // post data to /submit.  See server.js to see the server response.
+      type: 'POST',
+      data: mydata,
+      success: function (mydata) {
+          alert(data);
+      }
+     });
+}
+//========================================================
 // This is the function that makes the submisison happen.
 // If a keypoint is not clicked on,the page alerts
 // the user to mark all images before resubmitting
@@ -141,7 +154,7 @@ $(document).ready(function(){
       var empty_field= false;
       var which_fields_empty = new Array();
       var submit_dict = new Array();
-      var user=$("#user").val();
+      var comments=$("#comments").val();
       for (i=0; i <imgs.length; i++) {
       	submit_dict[i]=(canvas_tops[i].coords); //submit_dict has the corresponding points clicked on each image
         console.log(canvas_tops[i].coords[0]);
@@ -152,14 +165,17 @@ $(document).ready(function(){
       }
       var coords = JSON.stringify(submit_dict); // change submit_dict to a string
       if (!empty_field) { // only post the result if user clicked on all images
-      $.ajax({
-    	url: '/submit', // post data to /submit.  See server.js to see the server response.
-    	type: 'POST',
-      data: {coords: coords, user:user, task_num: task_num},
-    	success: function (data) {
-        	alert(data);
-    	}
-	   });
+    //   $.ajax({
+    // 	url: '/submit', // post data to /submit.  See server.js to see the server response.
+    // 	type: 'POST',
+    //   data: {coords: coords, user:user, task_num: task_num},
+    // 	success: function (data) {
+    //     	alert(data);
+    // 	}
+	   // });
+     var mydata = {coords: coords, comments: comments, task_num: task_num, assignmentId: assignmentId};
+     ajax_post('/submit', mydata);
+     ajax_post('https://workersandbox.mturk.com/mturk/externalSubmit', mydata);
     }
     else { // alert user if he did not click on all images
       var empty_images = JSON.stringify(which_fields_empty);

@@ -102,6 +102,9 @@ var num_repeat_task = 3;
 
 app.get('/begin',function(req, res) {
 
+	var assignmentId = req.query.assignmentId;
+	console.log(assignmentId);
+
 	myurl = (req.originalUrl);
 	display_request_name(myurl, silent);
 	var files = fs.readdirSync(__dirname +"/imglists/");
@@ -109,7 +112,13 @@ app.get('/begin',function(req, res) {
 	for (i=0; i<files.length; i++) {
 		if (task_counter[files[i]] <= num_repeat_task) {
 			task_counter[files[i]]+=1;
-			res.redirect('/imglists/'+i.toString() );
+			res.redirect(url.format({ 
+       				pathname:"/imglists",
+       			query: {
+          			"assignmentId": assignmentId,
+           			"num": i.toString(),
+        				}
+     			}));
 			break;
 		}
 	}
@@ -123,13 +132,14 @@ app.get('/begin',function(req, res) {
 // Finally, after getting the <imgs> array, we send the <imgs> array along
 // with the task index to the actual task page.
 //========================================================
-app.get('/imglists/:num',function(req, res) {
+app.get('/imglists',function(req, res) {
 
 	myurl = (req.originalUrl);
 	display_request_name(myurl, silent);
 
+
 	var files = fs.readdirSync(__dirname +"/imglists/");
-	var task_num = Number(req.params.num); //task num got from url
+	var task_num = Number(req.query.num); //task num got from url
 	var text = fs.readFileSync(__dirname + '/imglists/' + files[task_num],'utf8'); // get the .txt file that corresponds to task_num
 	var imgs = text.split('\r\n');
 
@@ -142,7 +152,8 @@ app.get('/imglists/:num',function(req, res) {
        pathname:"/task",
        query: {
           "imgs": imgs.toString(),
-          "task_num": req.params.num,
+          "task_num": req.query.num,
+          "assignmentId":req.query.assignmentId,
         }
      }));
 });
@@ -168,13 +179,15 @@ app.get('/task',function(req, res) {
 
 	var imgs = req.query.imgs;
 	var task_num = req.query.task_num;
+	var assignmentId = req.query.assignmentId;
 
     var top = fs.readFileSync(__dirname +"/public/task_top.html", 'utf8');
     var middle_img = ' <script> var imgs = [' +imgs+']; </script> <br>'; // add imgs array as variable dynamically
     var middle_task = '<script> var task_num = '+task_num+' </script> <br>'; // add task_num array as variable dynamically
+    var middle_assignment_id = '<script> var assignmentId = '+assignmentId+' </script> <br>';
     var bottom = fs.readFileSync(__dirname +"/public/task_bottom.html", 'utf8');
 
-    html = top + middle_img + middle_task + bottom;
+    html = top + middle_img + middle_task + middle_assignment_id + bottom;
 	res.send(html);
 });
 //========================================================
@@ -189,10 +202,11 @@ app.post('/submit',function(req,res){
   display_request_name(myurl, silent);
   
   var coords = req.body.coords;
-  var user = req.body.user;
+  var comments = req.body.comments;
   var task_num = req.body.task_num;
-  out_str = coords; // final user submitted coordinates 
-  export_command = '(echo '+out_str+') > output/'+user+'_'+'task_'+task_num+'.txt'; // writes the coordinates into a txt file, the file name is the username and txt number
+  var assignmentId = req.body.assignmentId;
+  out_str ='task_num: ' + task_num + '\n\n Coordinates: ' +coords + '\n\n Comments: \n'+comments; // final user submitted coordinates 
+  export_command = '(echo '+out_str+') > output/'+assignmentId+'_'+'task_'+task_num+'.txt'; // writes the coordinates into a txt file, the file name is the username and txt number
   //console.log(export_command);
 
   exec(export_command, function(err, stdout, stderr){ // exec library lets the server execute the command.  It is saved in the /output directory
