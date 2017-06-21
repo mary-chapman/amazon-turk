@@ -21,13 +21,26 @@ var canvas1 = document.getElementById('canvas1');
 var canvas2 = document.getElementById('canvas2');
 var canvas3 = document.getElementById('canvas3');
 var canvas4 = document.getElementById('canvas4');
+var canvas5 = document.getElementById('canvas5');
+var canvas6 = document.getElementById('canvas6');
+var canvas7 = document.getElementById('canvas7');
+var canvas8 = document.getElementById('canvas8');
+var canvas9 = document.getElementById('canvas9');
+var canvas10 = document.getElementById('canvas10');
+var canvas11 = document.getElementById('canvas11');
+var canvas12 = document.getElementById('canvas12');
+
 
 canvas2.coords = new Array();
 canvas4.coords = new Array();
 
 var csize = 300;
-set_canvas_size(canvas1,canvas2, csize,csize);
-set_canvas_size(canvas3,canvas4, csize,csize);
+// set_canvas_size(canvas1,canvas2, csize,csize);
+// set_canvas_size(canvas3,canvas4, csize,csize);
+// set_canvas_size(canvas5,canvas6, csize,csize);
+// set_canvas_size(canvas7,canvas8, csize,csize);
+// set_canvas_size(canvas9,canvas10, csize,csize);
+// set_canvas_size(canvas11,canvas12, csize,csize);
 
 var rsize = 10;
 var total_allowed_points = 8;
@@ -44,20 +57,24 @@ var c4 = canvas4.getContext('2d');
 // the <imgs> array is generated from the server dynamically.  
 // Please refer to the file server.js
 //========================================================
-var canvases = [canvas1, canvas3];
-var canvas_tops = [canvas2, canvas4];
+var canvases = [canvas1, canvas3, canvas5, canvas7, canvas9, canvas11];
+var canvas_tops = [canvas2, canvas4, canvas6, canvas8, canvas10, canvas12];
+var all_canvases = [canvas1, canvas3, canvas5, canvas7, canvas9, canvas11, canvas2, canvas4, canvas6, canvas8, canvas10, canvas12];
+set_canvas_size(all_canvases, csize, csize);
 make_bases(imgs, canvases, 0, make_bases); // draws img[i] on canvases[i]
 //========================================================
 // This function takes two stacked convases and sets their size to be the same
 //========================================================
-function set_canvas_size(canvas_name_bot, canvas_name_top, w,h) {
+function set_canvas_size(canvases, w,h) {
   var myName = arguments.callee.name;
   display_func_name(myName, silent, log);
 
-  canvas_name_top.width=w;
-  canvas_name_top.height=h;
-  canvas_name_bot.width=w;
-  canvas_name_bot.height=h;
+  for (i = 0; i < canvases.length; i++) {
+
+    canvas_name = canvases[i];
+    canvas_name.width=w;
+    canvas_name.height=h;
+}
 }
 //========================================================
 function make_bases(imgsrc, canvas, i, callback)
@@ -221,15 +238,26 @@ function turkSetAssignmentID(assignmentId) {
 
 
 }
+
+function add_events(mycanvases) {
+
+  for (i = 0; i<mycanvases.length; i++) {
+
+    mycanvases[i].addEventListener('click', canvas_draw,false);
+    mycanvases[i].addEventListener('contextmenu', clear, false);
+  }
+}
+
+add_events(canvas_tops);
 //========================================================
 // we add an event to detect clicks on the "top" canvas.
 // The bottom canvas contains the image and is not being drawn on
 //========================================================
-canvas2.addEventListener('click', canvas_draw, false);
-canvas4.addEventListener('click', canvas_draw, false);
-//========================================================
-// Adding right click event to erase selected points
-//========================================================
-canvas2.addEventListener('contextmenu', clear, false);
-canvas4.addEventListener('contextmenu', clear, false);
+// canvas2.addEventListener('click', canvas_draw, false);
+// canvas4.addEventListener('click', canvas_draw, false);
+// //========================================================
+// // Adding right click event to erase selected points
+// //========================================================
+// canvas2.addEventListener('contextmenu', clear, false);
+// canvas4.addEventListener('contextmenu', clear, false);
 //========================================================
