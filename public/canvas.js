@@ -188,9 +188,9 @@ $(document).ready(function(){
 function turkSetAssignmentID(assignmentId) {
 
   button_name = 'submit';
-  document.getElementById('assignmentId').value = assignmentID;
+  document.getElementById('assignmentId').value = assignmentId;
 
-  if (assignmentID == "ASSIGNMENT_ID_NOT_AVAILABLE") { 
+  if (assignmentId == "ASSIGNMENT_ID_NOT_AVAILABLE") { 
     // If we're previewing, disable the button and give it a helpful message
     btn = document.getElementById(button_name);
     if (btn) {
