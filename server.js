@@ -206,7 +206,7 @@ app.post('/submit',function(req,res){
   var comments = req.body.comments;
   var task_num = req.body.task_num;
   var assignmentId = req.body.assignmentId;
-  out_str ='task_num: ' + task_num + '\n\n Coordinates: ' +coords + '\n\n Comments: \n'+comments; // final user submitted coordinates 
+  out_str ='task_num: ' + task_num + ' Coordinates: ' +coords + ' Comments:'+comments; // final user submitted coordinates 
   export_command = '(echo '+out_str+') > output/'+assignmentId+'_'+'task_'+task_num+'.txt'; // writes the coordinates into a txt file, the file name is the username and txt number
   //console.log(export_command);
 
