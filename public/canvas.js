@@ -185,10 +185,19 @@ $(document).ready(function(){
 //========================================================
 //set the assignment id for submission
 //========================================================
-function turkSetAssignmentID() {
+function turkSetAssignmentID(assignmentId) {
 
+  button_name = 'submit';
   document.getElementById('assignmentId').value = assignmentID;
 
+  if (assignmentID == "ASSIGNMENT_ID_NOT_AVAILABLE") { 
+    // If we're previewing, disable the button and give it a helpful message
+    btn = document.getElementById(button_name);
+    if (btn) {
+      btn.disabled = true; 
+      btn.value = "You must ACCEPT the HIT before you can submit the results.";
+    } 
+  }
 }
 //========================================================
 // we add an event to detect clicks on the "top" canvas.
