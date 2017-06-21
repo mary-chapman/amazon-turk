@@ -182,9 +182,9 @@ app.get('/task',function(req, res) {
 	var assignmentId = req.query.assignmentId;
 
     var top = fs.readFileSync(__dirname +"/public/task_top.html", 'utf8');
-    var middle_img = ' <script> var imgs = [' +imgs+']; </script> <br>'; // add imgs array as variable dynamically
-    var middle_task = '<script> var task_num = '+task_num+' </script> <br>'; // add task_num array as variable dynamically
-    var middle_assignment_id = '<script> var assignmentId = '+assignmentId+' </script> <br>';
+    var middle_img = ' <script> var imgs = [' +imgs+']; </script>'; // add imgs array as variable dynamically
+    var middle_task = '<script> var task_num = '+task_num+' </script>'; // add task_num array as variable dynamically
+    var middle_assignment_id = '<script> var assignmentId = '+JSON.stringify(assignmentId)+' </script>';
     var bottom = fs.readFileSync(__dirname +"/public/task_bottom.html", 'utf8');
 
     html = top + middle_img + middle_task + middle_assignment_id + bottom;
