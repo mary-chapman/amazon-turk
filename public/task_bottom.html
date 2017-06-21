@@ -3,7 +3,16 @@ loaded easily and have some extra stuff throw in the middle.
  -->
 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js">  </script>
 	<script src="canvas.js"></script> <!-- The main script to click the keypoints -->
-<input id="comments" type="text"> comments <br>
-<input type="button" value="Submit Results" id="submit" onClick="submit_results()"> <!-- submit button which activates the app.get('/submit') in server.js -->
+<!-- <input id="comments" type="text"> comments <br>
+<input type="button" value="Submit Results" id="submit" onClick="submit_results()"> --> <!-- submit button which activates the app.get('/submit') in server.js -->
+
+
+<form name='mturk_form' method='POST' id='mturk_form' action='https://workersandbox.mturk.com/mturk/externalSubmit'>
+  <input type='hidden' value='' name='assignmentId' id='assignmentId'/>
+  <p><textarea id="comments" name='comments' cols='80' rows='3'></textarea></p>
+  <p><input type='submit' id='submit' value='Submit Results' onClick="submit_results()"/></p>
+</form>
+<script language='Javascript'>turkSetAssignmentID();</script>
+
 </body>
 </html>

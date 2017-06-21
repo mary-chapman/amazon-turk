@@ -183,6 +183,14 @@ $(document).ready(function(){
     });
   });
 //========================================================
+//set the assignment id for submission
+//========================================================
+function turkSetAssignmentID() {
+
+  document.getElementById('assignmentId').value = assignmentID;
+
+}
+//========================================================
 // we add an event to detect clicks on the "top" canvas.
 // The bottom canvas contains the image and is not being drawn on
 //========================================================
