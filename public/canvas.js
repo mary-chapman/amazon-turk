@@ -121,7 +121,14 @@ function canvas_draw(e) {
     posx = pos.x;
     posy = pos.y;
     this.coords.push([posx, posy]);
-    c.fillRect(posx-rsize/2, posy-rsize/2, rsize, rsize);}
+    c.fillStyle = "red";
+
+    c.beginPath();
+    c.arc(posx, posy, 5, 0, 2 * Math.PI);
+    c.fill();
+
+    //c.fillRect(posx-rsize/2, posy-rsize/2, rsize, rsize);
+  }
 
   else {alert('Only '+total_allowed_points.toString()+' points allowed.')}
 
