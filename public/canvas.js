@@ -30,17 +30,7 @@ var canvas10 = document.getElementById('canvas10');
 var canvas11 = document.getElementById('canvas11');
 var canvas12 = document.getElementById('canvas12');
 
-
-canvas2.coords = new Array();
-canvas4.coords = new Array();
-
 var csize = 300;
-// set_canvas_size(canvas1,canvas2, csize,csize);
-// set_canvas_size(canvas3,canvas4, csize,csize);
-// set_canvas_size(canvas5,canvas6, csize,csize);
-// set_canvas_size(canvas7,canvas8, csize,csize);
-// set_canvas_size(canvas9,canvas10, csize,csize);
-// set_canvas_size(canvas11,canvas12, csize,csize);
 
 var rsize = 10;
 var total_allowed_points = 8;
@@ -62,8 +52,19 @@ var canvas_tops = [canvas2, canvas4, canvas6, canvas8, canvas10, canvas12];
 var all_canvases = [canvas1, canvas3, canvas5, canvas7, canvas9, canvas11, canvas2, canvas4, canvas6, canvas8, canvas10, canvas12];
 set_canvas_size(all_canvases, csize, csize);
 make_bases(imgs, canvases, 0, make_bases); // draws img[i] on canvases[i]
+instantiate_coords(canvas_tops);
 //========================================================
-// This function takes two stacked convases and sets their size to be the same
+
+function instantiate_coords(mycanvases) {
+
+  for (i = 0; i < mycanvases.length; i++) {
+    mycanvases[i].coords = new Array();
+  }
+}
+
+
+//========================================================
+// This function takes convases and sets their size to be the same
 //========================================================
 function set_canvas_size(canvases, w,h) {
   var myName = arguments.callee.name;
@@ -186,14 +187,7 @@ $(document).ready(function(){
       }
       var coords = JSON.stringify(submit_dict); // change submit_dict to a string
       if (!empty_field) { // only post the result if user clicked on all images
-    //   $.ajax({
-    // 	url: '/submit', // post data to /submit.  See server.js to see the server response.
-    // 	type: 'POST',
-    //   data: {coords: coords, user:user, task_num: task_num},
-    // 	success: function (data) {
-    //     	alert(data);
-    // 	}
-	   // });
+
      var mydata = {coords: coords, comments: comments, task_num: task_num, assignmentId: assignmentId};
      ajax_post('/submit', mydata);
     }
@@ -214,6 +208,7 @@ function turkSetAssignmentID(assignmentId) {
 
   var empty_field= false;
   for (i=0; i <imgs.length; i++) {
+
         if (canvas_tops[i].coords[0] == null) {
           empty_field = true;
           break;
