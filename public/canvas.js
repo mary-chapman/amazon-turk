@@ -227,16 +227,22 @@ function turkSetAssignmentID(assignmentId) {
     if (btn) {
       btn.disabled = true; 
       btn.value = "You must ACCEPT the HIT before you can submit the results.";
+      return false
     } 
   }
 
   
   else if (empty_field) {
-    btn.disabled = true; 
     btn.value = "Please choose a keypoint for each image before submitting";
+    return false;
   }
 
-  else {btn.disabled = false;}
+  else {
+    btn.value = "Submit";
+    btn.disabled = false; 
+    return true;
+
+  }
 
 
 }
@@ -250,16 +256,9 @@ function add_events(mycanvases) {
   }
 }
 
+function check_submission_status() {
+
+  return turkSetAssignmentID(assignmentId);
+}
+
 add_events(canvas_tops);
-//========================================================
-// we add an event to detect clicks on the "top" canvas.
-// The bottom canvas contains the image and is not being drawn on
-//========================================================
-// canvas2.addEventListener('click', canvas_draw, false);
-// canvas4.addEventListener('click', canvas_draw, false);
-// //========================================================
-// // Adding right click event to erase selected points
-// //========================================================
-// canvas2.addEventListener('contextmenu', clear, false);
-// canvas4.addEventListener('contextmenu', clear, false);
-//========================================================
