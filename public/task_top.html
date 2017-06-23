@@ -18,13 +18,14 @@ loaded easily and have some extra stuff throw in the middle.   -->
 /*
 		Each container contains 2 canvases, one on top of the other.  one canvas is used to 
 		display an image, the other canvas is used to draw indications*/
-		#container1{ position: relative; }
-    	#canvas1 { position: relative; top: 0; left: 0; }
-    	#canvas2 { position: absolute; top: 0; left: 0; }
+		
+/*		#container1{ position: relative;}
+    	#canvas1 { position: relative; top: 0; left: 0;}
+    	#canvas2 { position: absolute; top: 0; left: 0;}
     	
-    	#container2{ position: relative; }
-		#canvas3 { position: relative; top: 0; left: 0; }
-    	#canvas4 { position: absolute; top: 0; left: 0; }
+    	#container2{ position: absolute; }
+		#canvas3 { position: absolute; top: 0; left: 300; }
+    	#canvas4 { position: absolute; top: 0; left: 300; }
 
     	#container3{ position: relative; }
 		#canvas5 { position: relative; top: 0; left: 0; }
@@ -40,7 +41,23 @@ loaded easily and have some extra stuff throw in the middle.   -->
 				
 		#container6{ position: relative; }
 		#canvas11 { position: relative; top: 0; left: 0; }
-		#canvas12 { position: absolute; top: 0; left: 0; }
+		#canvas12 { position: absolute; top: 0; left: 0; }*/
+
+		#container{position:relative;}
+		.part{position:absolute;}
+		#canvas1 {left:0;} 
+		#canvas2 {left:0;}
+		#canvas3 {left:230px;}
+		#canvas4 {left:230px;}
+		#canvas5 {left:460px;}
+		#canvas6 {left:460px;}
+		#canvas7 {left:690px;}
+		#canvas8 {left:690px;}
+		#canvas9 {left:920px;}
+		#canvas10 {left:920px;}			
+		#canvas11  {left:1150px;}
+		#canvas12  {left:1150px;}
+		#mturk_form {top: 400px;};
 
 /*
     	//========================================================
@@ -49,8 +66,7 @@ loaded easily and have some extra stuff throw in the middle.   -->
 </head>
 <body>
 <!-- 	Here are the containers and the canvases underneath -->
-	<div>
-	<div id="container1">
+	<!-- <div id="container1">
     <canvas class="canvas" id="canvas1"></canvas>
     <canvas class="canvas" id="canvas2"></canvas>
 	</div>
@@ -78,10 +94,28 @@ loaded easily and have some extra stuff throw in the middle.   -->
 	<div id="container6">
 	<canvas class="canvas" id="canvas11"></canvas>
 	<canvas class="canvas" id="canvas12"></canvas>
+	</div> -->
+	<div>
+    <canvas class="part" id="canvas1"></canvas>
+    <canvas class="part" id="canvas2"></canvas>
+	
+    <canvas class="part" id="canvas3"></canvas>
+    <canvas class="part" id="canvas4"></canvas>
+    
+
+ 
+	<canvas class="part" id="canvas5"></canvas>
+	<canvas class="part" id="canvas6"></canvas>
+	
+	<canvas class="part" id="canvas7"></canvas>
+	<canvas class="part" id="canvas8"></canvas>
+	
+	<canvas class="part" id="canvas9"></canvas>
+	<canvas class="part" id="canvas10"></canvas>
+	
+	<canvas class="part" id="canvas11"></canvas>
+	<canvas class="part" id="canvas12"></canvas>
 	</div>
-
-
-    </div>
 
 <!--############################################ -->
 	

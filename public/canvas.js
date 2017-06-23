@@ -30,7 +30,8 @@ var canvas10 = document.getElementById('canvas10');
 var canvas11 = document.getElementById('canvas11');
 var canvas12 = document.getElementById('canvas12');
 
-var csize = 300;
+var csize = 200;
+var maxheight = 300;
 
 var rsize = 10;
 var total_allowed_points = 8;
@@ -50,8 +51,8 @@ var c4 = canvas4.getContext('2d');
 var canvases = [canvas1, canvas3, canvas5, canvas7, canvas9, canvas11];
 var canvas_tops = [canvas2, canvas4, canvas6, canvas8, canvas10, canvas12];
 var all_canvases = [canvas1, canvas3, canvas5, canvas7, canvas9, canvas11, canvas2, canvas4, canvas6, canvas8, canvas10, canvas12];
-set_canvas_size(all_canvases, csize, csize);
-make_bases(imgs, canvases, 0, make_bases); // draws img[i] on canvases[i]
+//set_canvas_sizes(all_canvases, csize, csize);
+make_bases(imgs, canvases, canvas_tops, 0, make_bases); // draws img[i] on canvases[i]
 instantiate_coords(canvas_tops);
 //========================================================
 
@@ -66,7 +67,7 @@ function instantiate_coords(mycanvases) {
 //========================================================
 // This function takes convases and sets their size to be the same
 //========================================================
-function set_canvas_size(canvases, w,h) {
+function set_canvas_sizes(canvases, w,h) {
   var myName = arguments.callee.name;
   display_func_name(myName, silent, log);
 
@@ -78,21 +79,33 @@ function set_canvas_size(canvases, w,h) {
 }
 }
 //========================================================
-function make_bases(imgsrc, canvas, i, callback)
+function make_bases(imgsrc, canvas_bottoms, canvas_tops, i, callback)
 // draws imgs[i] on canvases[i] using callback 
 {
   var myName = arguments.callee.name;
   display_func_name(myName, silent, log);
 
-  c = canvas[i].getContext('2d');
+  c_bottom = canvas_bottoms[i].getContext('2d');
+
   base_image = new Image();
   base_image.src = imgsrc[i];
   base_image.onload = function(){
 
-    c.drawImage(base_image, 0, 0, base_image.width, base_image.height, 0, 0, canvas[i].width, canvas[i].height);
+    canvas_bottoms[i].width = csize;
+    canvas_bottoms[i].height = base_image.height * (csize/base_image.width);
 
-    if(typeof canvas[i+1] != 'undefined') {
-  	callback(imgsrc, canvas, i+1, callback);
+    if (canvas_bottoms[i].height > maxheight) {
+      canvas_bottoms[i].height = maxheight;
+      canvas_bottoms[i].width = base_image.width * (maxheight/base_image.height)
+    }
+
+    canvas_tops[i].width = canvas_bottoms[i].width;
+    canvas_tops[i].height = canvas_bottoms[i].height;
+
+    c_bottom.drawImage(base_image, 0, 0, base_image.width, base_image.height, 0, 0, canvas_bottoms[i].width, canvas_bottoms[i].height);
+
+    if(typeof canvas_bottoms[i+1] != 'undefined') {
+  	callback(imgsrc, canvas_bottoms, canvas_tops, i+1, callback);
   }
   }
 }
