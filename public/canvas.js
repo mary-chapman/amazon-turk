@@ -50,7 +50,7 @@ var c4 = canvas4.getContext('2d');
 //========================================================
 var canvases = [canvas1, canvas3, canvas5, canvas7, canvas9, canvas11];
 var canvas_tops = [canvas2, canvas4, canvas6, canvas8, canvas10, canvas12];
-var all_canvases = [canvas1, canvas3, canvas5, canvas7, canvas9, canvas11, canvas2, canvas4, canvas6, canvas8, canvas10, canvas12];
+var all_canvases = [canvas1, canvas2, canvas3, canvas4, canvas5, canvas6, canvas7, canvas8, canvas9, canvas10, canvas11, canvas12];
 //set_canvas_sizes(all_canvases, csize, csize);
 make_bases(imgs, canvases, canvas_tops, 0, make_bases); // draws img[i] on canvases[i]
 instantiate_coords(canvas_tops);
@@ -97,10 +97,15 @@ function make_bases(imgsrc, canvas_bottoms, canvas_tops, i, callback)
     if (canvas_bottoms[i].height > maxheight) {
       canvas_bottoms[i].height = maxheight;
       canvas_bottoms[i].width = base_image.width * (maxheight/base_image.height)
-    }
+    } 
 
     canvas_tops[i].width = canvas_bottoms[i].width;
     canvas_tops[i].height = canvas_bottoms[i].height;
+
+    var cur_top = document.getElementById("clear"+(i*2+2).toString());
+    //cur_top = "500px";
+    //alert("clear"+(i*2+2).toString());
+    console.log(cur_top);
 
     c_bottom.drawImage(base_image, 0, 0, base_image.width, base_image.height, 0, 0, canvas_bottoms[i].width, canvas_bottoms[i].height);
 
@@ -272,6 +277,15 @@ function add_events(mycanvases) {
 function check_submission_status() {
 
   return turkSetAssignmentID(assignmentId);
+}
+
+function clear_points(canvas) {
+  var c = canvas.getContext('2d')
+  c.clearRect(0, 0, canvas.width, canvas.height);
+  canvas.coords = [];
+
+  turkSetAssignmentID(assignmentId);
+
 }
 
 add_events(canvas_tops);
