@@ -31,8 +31,8 @@ app.use(bodyParser.json());
 //========================================================
 // Https key and certificate.  Necessary to host https server.
 //========================================================
-var privateKey  = fs.readFileSync('sslcert/key.pem', 'utf8');
-var certificate = fs.readFileSync('sslcert/cert.pem', 'utf8');
+var privateKey  = fs.readFileSync('sslcert/myserver.key', 'utf8');
+var certificate = fs.readFileSync('sslcert/server.csr', 'utf8');
 var credentials = {key: privateKey, cert: certificate};
 
 var httpsServer = https.createServer(credentials, app);
