@@ -102,10 +102,12 @@ function make_bases(imgsrc, canvas_bottoms, canvas_tops, i, callback)
     canvas_tops[i].width = canvas_bottoms[i].width;
     canvas_tops[i].height = canvas_bottoms[i].height;
 
-    var cur_top = document.getElementById("clear"+(i*2+2).toString());
+    im_height_str = (canvas_tops[i].height + 84).toString();
+
+    document.getElementById("clear"+(i*2+2).toString()).style.top = im_height_str+'px';
     //cur_top = "500px";
     //alert("clear"+(i*2+2).toString());
-    console.log(cur_top);
+    //console.log(cur_top);
 
     c_bottom.drawImage(base_image, 0, 0, base_image.width, base_image.height, 0, 0, canvas_bottoms[i].width, canvas_bottoms[i].height);
 
