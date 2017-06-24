@@ -1,0 +1,69 @@
+		h1 { white-space: nowrap; }
+		canvas {
+			border: 1px solid black;
+		}
+
+		body {
+			margin: 0;
+		}
+/*
+		Each container contains 2 canvases, one on top of the other.  one canvas is used to 
+		display an image, the other canvas is used to draw indications*/
+		
+/*		#container1{ position: relative;}
+    	#canvas1 { position: relative; top: 0; left: 0;}
+    	#canvas2 { position: absolute; top: 0; left: 0;}
+    	
+    	#container2{ position: absolute; }
+		#canvas3 { position: absolute; top: 0; left: 300; }
+    	#canvas4 { position: absolute; top: 0; left: 300; }
+
+    	#container3{ position: relative; }
+		#canvas5 { position: relative; top: 0; left: 0; }
+		#canvas6 { position: absolute; top: 0; left: 0; }
+		
+		#container4{ position: relative; }
+		#canvas7 { position: relative; top: 0; left: 0; }
+		#canvas8 { position: absolute; top: 0; left: 0; }
+		
+		#container5{ position: relative; }
+		#canvas9 { position: relative; top: 0; left: 0; }
+		#canvas10 { position: absolute; top: 0; left: 0; }
+				
+		#container6{ position: relative; }
+		#canvas11 { position: relative; top: 0; left: 0; }
+		#canvas12 { position: absolute; top: 0; left: 0; }*/
+
+		/*#container{position:relative;}
+		.part{position:absolute;}
+		#canvas1 {left:0;} 
+		#canvas2 {left:0;}
+		#canvas3 {left:230px;}
+		#canvas4 {left:230px;}
+		#canvas5 {left:460px;}
+		#canvas6 {left:460px;}
+		#canvas7 {left:690px;}
+		#canvas8 {left:690px;}
+		#canvas9 {left:920px;}
+		#canvas10 {left:920px;}			
+		#canvas11  {left:1150px;}
+		#canvas12  {left:1150px;}
+		#mturk_form {top: 400px;}
+		#clear2 {top:370px; }
+		#clear4 {top:370px; left:230px; }
+		#clear6 {top:370px; left:460px;}
+		#clear8 {top:370px; left:690px;}
+		#clear10 {top:370px; left:920px;}
+		#clear12 {top:370px; left:1150px;};*/
+/*
+    	//========================================================
+*/
+
+.canvasContainer {
+    position: relative;
+}
+.canvasOverlay {
+    position:absolute;
+    top: 0;
+    left: 0;
+}
