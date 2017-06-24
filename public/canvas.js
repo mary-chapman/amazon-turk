@@ -103,6 +103,7 @@ function make_bases(imgsrc, canvas_bottoms, canvas_tops, i, callback)
     canvas_tops[i].height = canvas_bottoms[i].height;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     im_height_str = (canvas_tops[i].height + 84).toString();
 
     document.getElementById("clear"+(i*2+2).toString()).style.top = im_height_str+'px';
@@ -110,6 +111,8 @@ function make_bases(imgsrc, canvas_bottoms, canvas_tops, i, callback)
     //alert("clear"+(i*2+2).toString());
     //console.log(cur_top);
 
+=======
+>>>>>>> parent of 46371d7... got certs
 =======
 >>>>>>> parent of 46371d7... got certs
     c_bottom.drawImage(base_image, 0, 0, base_image.width, base_image.height, 0, 0, canvas_bottoms[i].width, canvas_bottoms[i].height);
